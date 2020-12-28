@@ -11,7 +11,6 @@
     <!-- <a href="https://arxiv.org/pdf/2004.04534.pdf" target="_black">[PDF]</a>
     <a href="#" target="_black">[Code]</a>
     <a href="http://linzhuo.xyz/papers/SGNet/translation.pdf" target="_black">[中译版]</a>
-    <a href="./papers/20_GICD/bibtex.txt" target="_black">[bib]</a>
     <br />
     <br /> -->
   </p>
