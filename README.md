@@ -73,7 +73,7 @@ To test the model, please run:
 If you find this work is useful for your research, please cite our paper:
 ```
 @ARTICLE{chen2021sconv,
- title={Spatial Information Guided Convolution forReal-Time RGBD Semantic Segmentation},
+ title={Spatial Information Guided Convolution for Real-Time RGBD Semantic Segmentation},
  author={Chen, Lin-Zhuo and Lin, Zheng and Wang, Ziqin and Yang, Yong-Liang and Cheng, Ming-Ming},
  journal={IEEE Transactions on Image Processing},
  year={2021}
