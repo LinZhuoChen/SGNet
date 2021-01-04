@@ -42,10 +42,10 @@ The official repo of the TIP 2021 paper ``
 #### Pretrained model and dataset
 Download NYUDv2 dataset and pretrained model: 
 
-|                          | Dataset                                                      | model                                                    | model                                                        |
-| ------------------------ | ------------------------------------------------------------ | -------------------------------------------------------- | ------------------------------------------------------------ |
-| OneDrive                 | [NYUDv2](https://1drv.ms/u/s!AlDxLjilJDZoj2FrwVV9o8K8rhmI?e=AZ1POE]) |                                                          |                                                              |
-| BaiduDrive(passwd: scon) | [NYUDv2](https://pan.baidu.com/s/1lCrMu10IBepXXyGq3Vqphw)    | [SGNet](https://pan.baidu.com/s/1shzbcPjIKdq99Ji39OHIMg) | [SGNet_ASPP](https://pan.baidu.com/s/1HeiJfHpIjSQKmFtYJhBrng) |
+|                          | Dataset                                                      | model                                                        | model                                                        |
+| ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| OneDrive                 | [NYUDv2](https://1drv.ms/u/s!AlDxLjilJDZoj2FrwVV9o8K8rhmI?e=AZ1POE]) | [SGNet](https://1drv.ms/u/s!AlDxLjilJDZokRF-0oJUVr21lYzP?e=0NEVW1) | [SGNet_ASPP](https://1drv.ms/u/s!AlDxLjilJDZokRLcX9uMQFz1FuzP?e=Yq6G6K) |
+| BaiduDrive(passwd: scon) | [NYUDv2](https://pan.baidu.com/s/1lCrMu10IBepXXyGq3Vqphw)    | [SGNet](https://pan.baidu.com/s/1shzbcPjIKdq99Ji39OHIMg)     | [SGNet_ASPP](https://pan.baidu.com/s/1HeiJfHpIjSQKmFtYJhBrng) |
 
 <!-- USAGE EXAMPLES -->
 
