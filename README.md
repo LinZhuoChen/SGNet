@@ -39,8 +39,8 @@ The official repo of the TIP 2021 paper ``
 * numpy
 * tensorboardX
 * tqdm
-#### Pretrained model and dataset
-Download NYUDv2 dataset and pretrained model: 
+#### Trained model and dataset
+Download NYUDv2 dataset and trained model: 
 
 |                          | Dataset                                                      | model                                                        | model                                                        |
 | ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
