@@ -16,7 +16,7 @@
   </p>
 </p>
 <p align="center">
-  <a href="https://arxiv.org/pdf/2004.04534.pdf">
+  <a href="http://mftp.mmcheng.net/Papers/21TIP-SGNet.pdf">
     <img src="https://img.shields.io/badge/PDF-%F0%9F%93%83-green" target="_blank" />
   </a>
   <a href="http://zhaozhang.net/papers/20_GICD/translation.pdf">
