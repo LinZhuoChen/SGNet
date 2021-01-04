@@ -194,7 +194,36 @@ class SConv(ModulatedDeformConv):
         func = ModulatedDeformConvFunction(self.stride, self.padding, self.dilation, self.deformable_groups)
         return func(x, offset, mask, self.weight, self.bias)
 
+class SConv_test(ModulatedDeformConv):
+    def __init__(self, in_channels, out_channels,
+                 kernel_size, stride, padding,
+                 dilation=1, deformable_groups=1, no_bias=False):
+        super(SConv_test, self).__init__(in_channels, out_channels,
+                                  kernel_size, stride, padding, dilation, deformable_groups, no_bias)
 
+        self.offset_generator = nn.Conv2d(1,
+                                          self.deformable_groups * 2 * self.kernel_size[0] * self.kernel_size[1],
+                                          kernel_size=self.kernel_size,
+                                          stride=(self.stride, self.stride),
+                                          padding=(self.padding, self.padding),
+                                          bias=True)
+
+        self.init_offset()
+    def init_offset(self):
+        self.offset_generator.weight.data.zero_()
+        self.offset_generator.bias.data.zero_()
+
+    def forward(self, x, S):
+        if len(list(S.size())) == 4:
+            S = F.interpolate(input=S[:, 2, :, :].unsqueeze(1), size=(x.size()[2], x.size()[3]), mode='bilinear', align_corners=True)
+        else:
+            S = F.interpolate(input=S.unsqueeze(1), size=(x.size()[2], x.size()[3]), mode='bilinear',
+                              align_corners=True)
+        offset = self.offset_generator(S)
+
+        mask = torch.ones((offset.size()[0], self.kernel_size[0]*self.kernel_size[0], offset.size()[2], offset.size()[3])).cuda()
+        func = ModulatedDeformConvFunction(self.stride, self.padding, self.dilation, self.deformable_groups)
+        return func(x, offset, mask, self.weight, self.bias)
 class ASPPModule_Adaptive(nn.Module):
     """
     Reference:

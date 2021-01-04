@@ -8,7 +8,7 @@
     <br />
     <a href="http://linzhuo.xyz/sgnet.html"><strong>⭐ Project Home »</strong></a>
     <br />
-    <!-- <a href="https://arxiv.org/pdf/2004.04534.pdf" target="_black">[PDF]</a>
+    <!-- <a href="http://mftp.mmcheng.net/Papers/21TIP-SGNet.pdf" target="_black">[PDF]</a>
     <a href="#" target="_black">[Code]</a>
     <a href="http://linzhuo.xyz/papers/SGNet/translation.pdf" target="_black">[中译版]</a>
     <br />
@@ -24,29 +24,31 @@
   </a>
 </p>
 
-
 ***
 The official repo of the TIP 2021 paper ``
-[Spatial information guided Convolution for Real-Time 
-  RGBD Semantic Segmentation](https://arxiv.org/pdf/2004.04534.pdf).
-
-More details can be found at our [project home.](http://linzhuo.xyz/sgnet.html)
-
+[Spatial information guided Convolution for Real-Time RGBD Semantic Segmentation](http://mftp.mmcheng.net/Papers/21TIP-SGNet.pdf).
 
 
 ## Prerequisites
 #### Environments
 * PyTorch == 0.4.1
 * tqdm
-* CUDA==9.2
+* CUDA==8.0
 * CUDNN=7.1.4
 * pillow
 * numpy
-#### Pretrained model
-Download [dataset](https://1drv.ms/u/s!AlDxLjilJDZoj2FrwVV9o8K8rhmI?e=AZ1POE]) 
-and pretrained model: [SGNet](https://1drv.ms/u/s!AlDxLjilJDZoj18iaFYjVMLsS5U5?e=8TZSKC) 
+* tensorboardX
+* tqdm
+#### Pretrained model and dataset
+Download NYUDv2 dataset and pretrained model: 
+
+|                          | Dataset                                                      | model                                                    | model                                                        |
+| ------------------------ | ------------------------------------------------------------ | -------------------------------------------------------- | ------------------------------------------------------------ |
+| OneDrive                 | [NYUDv2](https://1drv.ms/u/s!AlDxLjilJDZoj2FrwVV9o8K8rhmI?e=AZ1POE]) |                                                          |                                                              |
+| BaiduDrive(passwd: scon) | [NYUDv2](https://pan.baidu.com/s/1lCrMu10IBepXXyGq3Vqphw)    | [SGNet](https://pan.baidu.com/s/1shzbcPjIKdq99Ji39OHIMg) | [SGNet_ASPP](https://pan.baidu.com/s/1HeiJfHpIjSQKmFtYJhBrng) |
 
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 1. Put the pretrained model into `pretrained_weights` folder and unzip the dataset into `dataset` folder.
 
@@ -61,11 +63,24 @@ and pretrained model: [SGNet](https://1drv.ms/u/s!AlDxLjilJDZoj18iaFYjVMLsS5U5?e
     sh make.sh
     ```
 3. Modify the config in `configs/sgnet_nyud_test.json` (mainly check "trained_model_path"). 
-To test the model, please run:
+To test the model with imput size $480 \times 640$, please run:
 
     ```bash
     ## SGNet
     python main.py ./configs/sgnet_nyud_test.json
+
+    ## SGNet_ASPP
+    python main.py ./configs/sgnet_aspp_nyud_test.json
+    ```
+4. You can run the follow command to 
+test the model inference speed, input the image size such as $480 \times 640$:
+
+    ```bash
+    ## SGNet
+    python main.py ./configs/sgnet_nyud_fps.json
+
+    ## SGNet_ASPP
+    python main.py ./configs/sgnet_aspp_nyud_fps.json
     ```
 
 ## Citation

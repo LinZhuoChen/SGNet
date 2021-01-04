@@ -7,13 +7,10 @@
   "os": 16,
   "mode": "measure_speed",
   "cuda": true,
-  "gpu": "0",
+  "gpu": "1",
   "seed": 123,
   "num_classes": 40,
   "val_list_path": "./dataset/list/nyud/test_nyud.txt",
   "trained_model_path": "./pretrained_weights/SGNet.pth.tar",
-  "snapshot_dir": "./snapshots",
-  "output_img_dir": "./output/NYUD/images",
-  "output_gt_dir": "./output/NYUD/gts",
-  "output_predict_dir": "./output/NYUD/predicts"
+  "snapshot_dir": "./snapshots"
 }

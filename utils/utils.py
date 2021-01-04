@@ -182,7 +182,7 @@ def predict_whole(net, image, tile_size, recurrence, S):
     image = torch.from_numpy(image)
     S = torch.from_numpy(S)
     interp = nn.Upsample(size=tile_size, mode='bilinear', align_corners=True)
-    prediction = net(image.cuda(), None, S.cuda())
+    prediction = net(image.cuda(), S.cuda())
     if isinstance(prediction, list):
         prediction = prediction[0]
     prediction = interp(prediction).cpu().data[0].numpy().transpose(1, 2, 0)

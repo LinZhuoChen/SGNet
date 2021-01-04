@@ -126,7 +126,7 @@ class ResNet(nn.Module):
                                         multi_grid=generate_multi_grid(i, multi_grid), deformable=False))
 
         return nn.Sequential(*layers)
-    def forward(self, x, HHA, depth):
+    def forward(self, x, depth):
         S = depth
         x = self.relu1(self.bn1(self.conv1(x)))
         x = self.relu2(self.bn2(self.conv2(x)))

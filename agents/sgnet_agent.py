@@ -30,8 +30,14 @@ class SGNetAgent(BaseAgent):
     def __init__(self, config):
         super().__init__(config)
         ## Select network
-        if config.spatial_information == 'depth' and config.os == 16 and config.network == "SGNet":
+        if config.spatial_information == 'depth' and config.os == 16 and config.network == "SGNet" and config.mode != "measure_speed":
             from graphs.models.SGNet.SGNet import SGNet
+        elif config.spatial_information == 'depth' and config.os == 16 and config.network == "SGNet":
+            from graphs.models.SGNet.SGNet_fps import SGNet
+        elif config.spatial_information == 'depth' and config.os == 16 and config.network == "SGNet_ASPP" and config.mode != "measure_speed":
+            from graphs.models.SGNet.SGNet_ASPP import SGNet
+        elif config.spatial_information == 'depth' and config.os == 16 and config.network == "SGNet_ASPP":
+            from graphs.models.SGNet.SGNet_ASPP_fps import SGNet
 
         random.seed(self.config.seed)
         os.environ['PYTHONHASHSEED'] = str(self.config.seed)
@@ -91,7 +97,8 @@ class SGNetAgent(BaseAgent):
             if self.config.mode == 'test':
                 self.test()
             elif self.config.mode == 'measure_speed':
-                self.measure_speed(input_size=[1, 3, 425, 560])
+                with torch.no_grad():
+                    self.measure_speed(input_size=[1, 3, 480, 640])
         except KeyboardInterrupt:
             self.logger.info("You have entered CTRL+C.. Wait to finalize")
 
@@ -122,21 +129,18 @@ class SGNetAgent(BaseAgent):
             input_size = (label.size(1), label.size(2))
 
             with torch.no_grad():
-                output = predict_multiscale(self.model, image, depth, input_size, [0.8, 1.0, 2.0],
+                if self.config.ms:
+                    output = predict_multiscale(self.model, image, depth, input_size, [0.8, 1.0, 2.0],
                                                 self.config.num_classes, False)
-                image = Image.fromarray(np.asarray(
-                    (image.cpu().numpy()[0, ...]).transpose(1, 2, 0)[:, :, ::-1] + np.asarray(
-                        [122.675, 116.669, 104.008]),
-                    dtype=np.uint8))
-                # image.save(self.config.output_img_dir + '/' + str(index) + '.png')
+                else:
+                    output = predict_multiscale(self.model, image, depth, input_size, [1.0],
+                                                self.config.num_classes, False)
                 seg_pred = np.asarray(np.argmax(output, axis=2), dtype=np.int)
                 output_im = Image.fromarray(np.asarray(np.argmax(output, axis=2), dtype=np.uint8))
                 output_im.putpalette(palette)
                 output_im.save(self.config.output_predict_dir + '/' + str(index) + '.png')
                 seg_gt = np.asarray(label[0].cpu().numpy(), dtype=np.int)
-                # gt_im = Image.fromarray(np.asarray(label[0].cpu().numpy(), dtype=np.uint8))
-                # gt_im.putpalette(palette)
-                # gt_im.save(self.config.output_gt_dir + '/' + str(index) + '.png')
+
                 ignore_index = seg_gt != 255
                 seg_gt = seg_gt[ignore_index]
                 seg_pred = seg_pred[ignore_index]
@@ -167,16 +171,14 @@ class SGNetAgent(BaseAgent):
         HHA = torch.randn(*input_size).cuda()
 
         for _ in range(100):
-            self.model(input, HHA, depth)
+            self.model(input, depth)
         print('=========Speed Testing=========')
         torch.cuda.synchronize()
         torch.cuda.synchronize()
         t_start = time.time()
+
         for _ in range(iteration):
-            torch.cuda.synchronize()
-            x, _ = self.model(input, HHA, depth)
-            x = F.upsample(input=x, size=(425, 560), mode='bilinear', align_corners=True)
-            torch.cuda.synchronize()
+            x = self.model(input, depth)
         torch.cuda.synchronize()
         elapsed_time = time.time() - t_start
         speed_time = elapsed_time / iteration * 1000

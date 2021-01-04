@@ -6,6 +6,7 @@
   "spatial_information": "depth",
   "os": 16,
   "mode": "test",
+  "ms": 0,
   "cuda": true,
   "gpu": "0",
   "seed": 123,
