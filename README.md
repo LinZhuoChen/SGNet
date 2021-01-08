@@ -62,6 +62,7 @@ Download NYUDv2 dataset and trained model:
     cd ..
     sh make.sh
     ```
+    
 3. Modify the config in `configs/sgnet_nyud_test.json` (mainly check "trained_model_path"). 
 To test the model with imput size $480 \times 640$, please run:
 
@@ -72,18 +73,35 @@ To test the model with imput size $480 \times 640$, please run:
     ## SGNet_ASPP
     python main.py ./configs/sgnet_aspp_nyud_test.json
     ```
+    You will get the following results:
+   
+   |   Model    |   mIoU    | mIoU(multi-scale) |
+   | :--------: | :-------: | :---------------: |
+   |   SGNet    |   49.8%   |       51.1%       |
+   | SGNet_ASPP | **50.2%** |       51.1%       |
+   
 4. You can run the follow command to 
-test the model inference speed, input the image size such as $480 \times 640$:
+    test the model inference speed, input the image size such as 480 x 640:
 
-    ```bash
-    ## SGNet
-    python main.py ./configs/sgnet_nyud_fps.json
-
-    ## SGNet_ASPP
-    python main.py ./configs/sgnet_aspp_nyud_fps.json
-    ```
+   ```bash
+   ## SGNet
+   python main.py ./configs/sgnet_nyud_fps.json
+    
+   ## SGNet_ASPP
+   python main.py ./configs/sgnet_aspp_nyud_fps.json
+   ```
+   
+   Speed is related to the hardware spec (e.g. CPU, GPU, RAM, etc), so it is hard to make an equal comparison. 
+   
+   I  get the following results under NVIDIA 1080TI GPU, Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz:
+   
+   |   Model    | FPS(480 x 640) | FPS(425 x 560) |
+   | :--------: | :------------: | :------------: |
+   |   SGNet    |       26       |       29       |
+   | SGNet_ASPP |       24       |       26       |
 
 ## Citation
+
 If you find this work is useful for your research, please cite our paper:
 ```
 @ARTICLE{chen2021sconv,
