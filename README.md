@@ -116,5 +116,12 @@ If you find this work is useful for your research, please cite our paper:
 }
 ```
 
-## Contact
+### Thanks to the Third Party Libs
+[inplace_abn](https://github.com/mapillary/inplace_abn) - 
+[Pytorch-Deeplab](https://github.com/speedinghzl/Pytorch-Deeplab) - 
+[PyTorch-Encoding](https://github.com/zhanghang1989/PyTorch-Encoding)
+[PyTorch-segmentation-toolbox](https://github.com/speedinghzl/pytorch-segmentation-toolbox)
+[Depth2HHA-python](https://github.com/charlesCXK/Depth2HHA-python)
+[Pytorch-Project-Template](https://github.com/moemen95/Pytorch-Project-Template)
+
 If you have any questions, feel free to contact me via `linzhuochen🥳foxmail😲com`
