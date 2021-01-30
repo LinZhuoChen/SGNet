@@ -38,6 +38,10 @@ class SGNetAgent(BaseAgent):
             from graphs.models.SGNet.SGNet_ASPP import SGNet
         elif config.spatial_information == 'depth' and config.os == 16 and config.network == "SGNet_ASPP":
             from graphs.models.SGNet.SGNet_ASPP_fps import SGNet
+        elif config.spatial_information == 'depth' and config.os == 16 and config.network == "SGNet_Res50" and config.mode != "measure_speed":
+            from graphs.models.SGNet.SGNet_Res50 import SGNet
+        elif config.spatial_information == 'depth' and config.os == 16 and config.network == "SGNet_Res50":
+            from graphs.models.SGNet.SGNet_Res50_fps import SGNet
 
         random.seed(self.config.seed)
         os.environ['PYTHONHASHSEED'] = str(self.config.seed)
@@ -62,9 +66,12 @@ class SGNetAgent(BaseAgent):
         self.model.train()
         self.model.float()
         print(config.gpu)
+        if config.mode == 'test':
+            self.test_model = self.model
         if config.mode != 'measure_speed':
             self.model = DataParallelModel(self.model, device_ids=[0])
             print('parallel....................')
+
 
         total = sum([param.nelement() for param in self.model.parameters()])
         print('  + Number of params: %.2fM' % (total / 1e6))
@@ -80,9 +87,6 @@ class SGNetAgent(BaseAgent):
             self.model.load_state_dict(checkpoint['state_dict'])
 
             # self.optimizer.load_state_dict(checkpoint['optimizer'])
-
-            self.logger.info("Checkpoint loaded successfully from '{}' at (epoch {}) at (iteration {})\n"
-                  .format(filename, checkpoint['epoch'], checkpoint['iteration']))
         except OSError as e:
             self.logger.info("No checkpoint exists from '{}'. Skipping...".format(self.config.checkpoint_dir))
             self.logger.info("**First time to train**")
@@ -106,7 +110,7 @@ class SGNetAgent(BaseAgent):
 
         tqdm_batch = tqdm(self.testloader, total=len(self.testloader),
                           desc="Testing...")
-        self.model.eval()
+        self.test_model.eval()
         metrics = IOUMetric(self.config.num_classes)
         loss_val = 0
         metrics = IOUMetric(self.config.num_classes)
@@ -130,10 +134,10 @@ class SGNetAgent(BaseAgent):
 
             with torch.no_grad():
                 if self.config.ms:
-                    output = predict_multiscale(self.model, image, depth, input_size, [0.8, 1.0, 2.0],
+                    output = predict_multiscale(self.test_model, image, depth, input_size, [0.8, 1.0, 2.0],
                                                 self.config.num_classes, False)
                 else:
-                    output = predict_multiscale(self.model, image, depth, input_size, [1.0],
+                    output = predict_multiscale(self.test_model, image, depth, input_size, [1.0],
                                                 self.config.num_classes, False)
                 seg_pred = np.asarray(np.argmax(output, axis=2), dtype=np.int)
                 output_im = Image.fromarray(np.asarray(np.argmax(output, axis=2), dtype=np.uint8))

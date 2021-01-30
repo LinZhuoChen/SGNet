@@ -1,0 +1,16 @@
+{
+  "exp_name": "sgnet_depth_nyud_test",
+  "agent": "SGNetAgent",
+  "dataset": "NYUD",
+  "network": "SGNet_Res50",
+  "spatial_information": "depth",
+  "os": 16,
+  "mode": "measure_speed",
+  "cuda": true,
+  "gpu": "1",
+  "seed": 123,
+  "num_classes": 40,
+  "val_list_path": "./dataset/list/nyud/test_nyud.txt",
+  "trained_model_path": "./pretrained_weights/SGNet.pth.tar",
+  "snapshot_dir": "./snapshots"
+}
