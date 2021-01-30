@@ -2,18 +2,17 @@
 <br />
   <h3 align="center">Spatial information guided Convolution for Real-Time 
   RGBD Semantic Segmentation</h3>
-
   <p align="center">
     Lin-Zhuo Chen, Zheng Lin, Ziqin Wang, Yong-Liang Yang and Ming-Ming Cheng
     <br />
-    <a href="http://linzhuo.xyz/sgnet.html"><strong>⭐ Project Home »</strong></a>
+    <a href="https://mmcheng.net/sgnet/"><strong>⭐ Project Home »</strong></a>
     <br />
-    <!-- <a href="http://mftp.mmcheng.net/Papers/21TIP-SGNet.pdf" target="_black">[PDF]</a>
+    <!-- <a href="https://arxiv.org/pdf/2004.04534.pdf" target="_black">[PDF]</a>
     <a href="#" target="_black">[Code]</a>
-    <a href="http://linzhuo.xyz/papers/SGNet/translation.pdf" target="_black">[中译版]</a>
     <br />
     <br /> -->
   </p>
+
 </p>
 <p align="center">
   <a href="http://mftp.mmcheng.net/Papers/21TIP-SGNet.pdf">
@@ -26,7 +25,7 @@
 
 ***
 The official repo of the TIP 2021 paper ``
-[Spatial information guided Convolution for Real-Time RGBD Semantic Segmentation](http://mftp.mmcheng.net/Papers/21TIP-SGNet.pdf).
+[Spatial information guided Convolution for Real-Time RGBD Semantic Segmentation](https://arxiv.org/pdf/2004.04534.pdf).
 
 ## Results on NYUDv2 Dataset
 
