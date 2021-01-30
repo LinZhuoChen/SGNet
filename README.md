@@ -108,11 +108,10 @@ If you find this work is useful for your research, please cite our paper:
 @article{21TIP-SGNet,   
   author={Lin-Zhuo Chen and Zheng Lin and Ziqin Wang and Yong-Liang Yang and Ming-Ming Cheng},   
   journal={IEEE Transactions on Image Processing},    
-  title={Spatial Information Guided Convolution for Real-Time RGBD Semantic Segmentation},    
+  title={Spatial Information Guided Convolution for Real-Time RGBD Semantic Segmentation}, 
   year={2021},   
-  volume={},   
-  number={},   
-  pages={1-1},   
+  volume={30},
+  pages={2313-2324},  
   doi={10.1109/TIP.2021.3049332} 
 }
 ```
