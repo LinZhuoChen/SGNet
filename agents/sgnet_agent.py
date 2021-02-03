@@ -51,7 +51,7 @@ class SGNetAgent(BaseAgent):
         torch.cuda.manual_seed_all(self.config.seed)
         cudnn.enabled = True
         cudnn.benchmark = True
-        cudnn.deterministic = True
+        cudnn.deterministic = False
         os.environ["CUDA_VISIBLE_DEVICES"] = config.gpu
         # create data loader
         if config.dataset == "NYUD":
@@ -175,20 +175,22 @@ class SGNetAgent(BaseAgent):
         HHA = torch.randn(*input_size).cuda()
 
         for _ in range(100):
-            self.model(input, depth)
+            x = self.model(input, depth)
         print('=========Speed Testing=========')
+        #torch.cuda.synchronize()
         torch.cuda.synchronize()
-        torch.cuda.synchronize()
-        t_start = time.time()
 
         for _ in range(iteration):
+            torch.cuda.synchronize()
+            t_start = time.time()
             x = self.model(input, depth)
-        torch.cuda.synchronize()
-        elapsed_time = time.time() - t_start
-        speed_time = elapsed_time / iteration * 1000
-        fps = iteration / elapsed_time
-        print(iteration)
-        print('Elapsed Time: [%.2f s / %d iter]' % (elapsed_time, iteration))
-        print('Speed Time: %.2f ms / iter   FPS: %.2f' % (speed_time, fps))
+            torch.cuda.synchronize()
+            elapsed_time = time.time() - t_start
+            speed_time = elapsed_time / 1 * 1000
+            fps = 1 / elapsed_time
+            #print(1)
+            #print('Elapsed Time: [%.2f s / %d iter]' % (elapsed_time, iteration))
+            print('Speed Time: %.2f ms / iter   FPS: %.2f' % (speed_time, fps))
+            time.sleep(0.005)
         return speed_time, fps
 

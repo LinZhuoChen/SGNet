@@ -5,7 +5,7 @@
   <p align="center">
     Lin-Zhuo Chen, Zheng Lin, Ziqin Wang, Yong-Liang Yang and Ming-Ming Cheng
     <br />
-    <a href="https://mmcheng.net/sgnet/"><strong>⭐ Project Home »</strong></a>
+    <a href="https://linzhuo.xyz/sgnet/"><strong>⭐ Project Home »</strong></a>
     <br />
     <!-- <a href="https://arxiv.org/pdf/2004.04534.pdf" target="_black">[PDF]</a>
     <a href="#" target="_black">[Code]</a>
