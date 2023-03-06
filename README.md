@@ -54,8 +54,7 @@ Download NYUDv2 dataset and trained model:
 
 |                          |                           Dataset                            |                            model                             |                            model                             |                            model                             |
 | ------------------------ | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| OneDrive                 | [NYUDv2](https://1drv.ms/u/s!AlDxLjilJDZoj2FrwVV9o8K8rhmI?e=AZ1POE]) | [SGNet_Res50](https://1drv.ms/u/s!AlDxLjilJDZokRMM62SCR3iOI_xk?e=00gLqJ) | [SGNet](https://1drv.ms/u/s!AlDxLjilJDZokRF-0oJUVr21lYzP?e=0NEVW1) | [SGNet_ASPP](https://1drv.ms/u/s!AlDxLjilJDZokRLcX9uMQFz1FuzP?e=Yq6G6K) |
-| BaiduDrive(passwd: scon) |  [NYUDv2](https://pan.baidu.com/s/1lCrMu10IBepXXyGq3Vqphw)   | [SGNet_Res50](https://pan.baidu.com/s/1yj3llVf14uT17HzqTi6pjw) |   [SGNet](https://pan.baidu.com/s/1shzbcPjIKdq99Ji39OHIMg)   | [SGNet_ASPP](https://pan.baidu.com/s/1HeiJfHpIjSQKmFtYJhBrng) |
+| BaiduDrive(passwd: scon) |  [NYUDv2](https://pan.baidu.com/s/1mvEVXRGc0ESrFN6ux3YpDA)   | [SGNet_Res50](https://pan.baidu.com/s/1yj3llVf14uT17HzqTi6pjw) |   [SGNet](https://pan.baidu.com/s/1shzbcPjIKdq99Ji39OHIMg)   | [SGNet_ASPP](https://pan.baidu.com/s/1HeiJfHpIjSQKmFtYJhBrng) |
 
 <!-- USAGE EXAMPLES -->
 
